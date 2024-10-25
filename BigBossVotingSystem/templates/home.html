@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bigg Boss Home</title>
+    
+    <!-- Link to external CSS for additional styling -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <style>
+        /* Set the background image and style for the entire page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('/static/images/Big-Boss.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: gold;
+        }
+
+        /* Apply a semi-transparent overlay to darken the background for readability */
+        .overlay {
+            background-color: gold(0, 0, 0, 0.6);  /* Black with 60% opacity */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        /* Container for the content to ensure it's centered */
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        /* Header title styling */
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Navigation link styling */
+        .nav-links a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #e55a4e;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .nav-links a {
+                display: block;
+                width: 80%;
+                margin: 10px auto;
+            }
+        }
+    </style>
+</head> 
+<body>
+    <!-- Overlay to darken the background image -->
+    <div class="overlay"></div>
+
+    <!-- Flash messages if any -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li style="color: red; z-index: 2;">{{ message }}</li>  <!-- Customize style as needed -->
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Welcome Message -->
+        <h2>Welcome to Bigg Boss Voting</h2>
+        <p>Vote for your favorite contestant and make them the winner of the Bigg Boss season!</p>
+
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a href="/index">Sign Up to Vote</a>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <!-- Link to external CSS for additional styling -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <style>
+        /* Set the background image and style for the entire page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('/static/images/Big-Boss.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* Apply a semi-transparent overlay to darken the background for readability */
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.6);  /* Black with 60% opacity */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        /* Container for the content to ensure it's centered */
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Styling the login form */
+        form {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.8); /* White background with some transparency */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        form input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        form button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #e55a4e;
+        }
+
+        /* Link styling */
+        p a {
+            color: #ff6f61;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            form {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay to darken the background image -->
+    <div class="overlay"></div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h2>Login</h2>
+
+        <!-- Flash messages if any -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li style="color: red;">{{ message }}</li>  <!-- Customize style as needed -->
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Login Form -->
+        <form method="POST">
+            <input type="text" name="votername" placeholder="Voter Name" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="/">Sign up here</a>.</p>
+    </div>
+
+</body>
+</html>

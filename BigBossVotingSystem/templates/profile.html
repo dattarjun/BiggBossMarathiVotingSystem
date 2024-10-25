@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>{{ candidate_name }}'s Profile</title>
+
+    <style>
+        /* Basic body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Profile card styling */
+        .profile-card {
+            background-color: white;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Profile image styling */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        /* Candidate name styling */
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Info paragraph styling */
+        .candidate-info {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 10px 0;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        /* Social media icon container */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        /* Social media icon styling */
+        .social-media a {
+            margin: 0 10px;
+        }
+
+        .social-media img {
+            width: 40px;
+            transition: transform 0.3s;
+        }
+
+        .social-media img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Vote button styling */
+        .vote-button {
+            padding: 10px 20px;
+            background-color: #c3e217;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .vote-button:hover {
+            background-color: #e55a4e;
+        }
+
+        /* Navigation links */
+        .nav-links {
+            margin-top: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #ff6f61;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e55a4e;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <!-- Candidate Profile Image -->
+        <img class="profile-img" src="/static/images/{{ candidate_name | lower }}.jpg" alt="{{ candidate_name }}">
+
+        <!-- Candidate Name -->
+        <h2>{{ candidate_name }}</h2>
+
+        <!-- Candidate Info -->
+        <p class="candidate-info">
+            {{ candidate_name }} is a talented contestant who has captured the hearts of many. Known for their incredible charm, wit, and personality, they have become a fan favorite in the Bigg Boss house. Stay tuned to see how far they go!
+        </p>
+
+        <!-- Social Media Links with icons -->
+        <div class="social-media">
+            <a href="https://instagram.com/{{ candidate_name | lower }}" target="_blank">
+                <img src="/static/images/instagram-icon.png" alt="Instagram">
+            </a>
+            <a href="https://facebook.com/{{ candidate_name | lower }}" target="_blank">
+                <img src="/static/images/facebook-icon.png" alt="Facebook">
+            </a>
+        </div>
+
+        <!-- Vote Button -->
+        {% if session.get('voter_id') %}
+            <form method="POST">
+                <button type="submit" class="vote-button">Vote for {{ candidate_name }}</button>
+            </form>
+        {% else %}
+            <p>Please log in to vote.</p>
+        {% endif %}
+
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a href="/candidates">Back to Candidates</a> | <a href="/logout">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates</title>
+    
+    <!-- Link to external CSS for additional styling -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <style>
+        /* Overall page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        /* Heading style */
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff6f61;
+        }
+
+        /* Candidate grid styling */
+        ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+            gap: 20px;
+            padding: 0;
+            list-style-type: none;
+            justify-items: center;
+        }
+
+        /* Candidate list item styling */
+        ul li {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            width: 75%;
+            max-width: 250px;
+        }
+
+        ul li:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Image styling */
+        ul li img {
+            width: 100%;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        ul li img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Candidate name styling */
+        ul li p {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        /* Profile link button styling */
+        ul li a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: white;
+            background-color: #93f40a;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        ul li a:hover {
+            background-color: #e55a4e;
+        }
+
+        /* Navigation links */
+        .nav-links {
+            margin-top: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #ff6f61;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e55a4e;
+        }
+
+        /* Responsive styling for mobile */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            ul {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            ul li {
+                max-width: 200px;
+            }
+
+            ul li img {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Candidates List</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li style="color: red;">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Candidates List -->
+    <ul>
+        {% for candidate in candidates %}
+        <li>
+            <img src="/static/images/{{ candidate | lower }}.jpg" alt="{{ candidate }}'s image">
+            <p>{{ candidate }}</p>
+            <a href="/profile/{{ candidate }}">View Profile</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+        <a href="/">Back to Home</a> | <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>
