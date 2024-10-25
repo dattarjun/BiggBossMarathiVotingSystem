@@ -1,6 +1,5 @@
 # BiggBossMarathiVotingSystem
 SUBMITTED FOR THE PARTIAL FULFILLMENT OF THE DEGREE Bachelor of Computer Application Group Project
-# Bigg Boss Marathi Voting System
 
 ### A Project Report Submitted for the Partial Fulfillment of the Degree
 **Bachelor of Computer Application, Part-III, Semester - V**
